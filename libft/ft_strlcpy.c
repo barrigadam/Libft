@@ -6,11 +6,12 @@
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:45:17 by abarriga          #+#    #+#             */
-/*   Updated: 2022/08/22 19:25:48 by abarriga         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:13:15 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include<stdio.h>
 
-unsigned	int	ft_strlcpy(char	*dest, char	*src, unsigned	int size)
+size_t	ft_strlcpy(char	*dest, const char	*src, size_t size)
 {
 	unsigned int	i;
 	unsigned int	cont;

@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 15:08:22 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/21 19:13:37 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/21 11:14:14 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/21 12:13:45 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include<stdio.h>
 
-size_t	ft_strlcat(char	*dest, const char	*src, size_t size)
+void	*ft_bzero(void *s, size_t n)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	a;
+	unsigned char	*ptr;
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
-		j++;
-	if (size <= i)
-		return (size + j);
-	a = (i + j);
-	j = 0;
-	while (src[j] != '\0' && i < (size - 1))
+	ptr = (unsigned char *)s;
+	while (n > 0)
 	{
-		dest[i] = src[j];
-		j++;
-		i++;
+		*(ptr++) = 0;
 	}
-	dest[i] = '\0';
-	return (a);
+	return (s);
 }

@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 15:08:22 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/21 19:13:37 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/21 10:19:38 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/21 11:12:04 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdio.h>
 
-size_t	ft_strlcat(char	*dest, const char	*src, size_t size)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	a;
+	unsigned char	*ptr;
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
-		j++;
-	if (size <= i)
-		return (size + j);
-	a = (i + j);
-	j = 0;
-	while (src[j] != '\0' && i < (size - 1))
+	ptr = (unsigned char *)b;
+	while (len > 0)
 	{
-		dest[i] = src[j];
-		j++;
-		i++;
+		*(ptr++) = (unsigned char)c;
+		len--;
 	}
-	dest[i] = '\0';
-	return (a);
+	return (b);
 }

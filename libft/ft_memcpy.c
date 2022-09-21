@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 15:08:22 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/21 19:13:37 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/21 12:14:40 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/21 13:18:38 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
 
-size_t	ft_strlcat(char	*dest, const char	*src, size_t size)
+void	*ft_memcpy(void	*dst, const void *src, size_t n)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	a;
+	unsigned char			*ptr1;
+	const unsigned char		*ptr2;
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
-		j++;
-	if (size <= i)
-		return (size + j);
-	a = (i + j);
-	j = 0;
-	while (src[j] != '\0' && i < (size - 1))
+	ptr1 = (unsigned char *)dst;
+	ptr2 = (unsigned char *)src;
+	while (n > 0)
 	{
-		dest[i] = src[j];
-		j++;
-		i++;
+		*(ptr1++) = *(ptr2++);
 	}
-	dest[i] = '\0';
-	return (a);
+	return (dst);
 }
