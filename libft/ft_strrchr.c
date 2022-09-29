@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 11:41:16 by abarriga          #+#    #+#             */
-/*   Updated: 2022/08/24 13:14:44 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/23 11:01:52 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/23 19:18:30 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char	*str, char	*to_find)
+char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	if (to_find[i] == '\0')
-		return (str);
-	while (str[i] != '\0')
-	{
-		j = 0;
-		while (str[i + j] != '\0' && str[i + j] == to_find[j])
-		{
-			if (to_find[j + 1] == '\0')
-				return (&str[i]);
-			j++;
-		}
+	while (s[i] != '\0')
 		i++;
+	if ((char) c == '\0')
+		return ((char *)s + i);
+	while (i >= 0)
+	{
+		if (s[i] == (char) c)
+			return ((char *)s + i);
+		i--;
 	}
 	return (0);
 }

@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 19:45:17 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/23 12:17:50 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/26 11:46:51 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/26 13:11:39 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
+#include"libft.h"
 
-size_t	ft_strlcpy(char	*dest, const char	*src, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char			*substr;
 	unsigned int	i;
-	unsigned int	cont;
 
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	if (size == 0)
-		return (cont);
-	i = 0;
-	while (src[i] != '\0' && i < (size - 1))
+	if (start >= ft_strlen(s))
 	{
-		dest[i] = src[i];
+		substr = ft_calloc(1, sizeof(char));
+		if (!substr)
+			return (0);
+		return (substr);
+	}
+	if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	substr = ft_calloc(sizeof(char), len + 1);
+	if (!substr)
+		return (0);
+	i = 0;
+	while (s[start + i] && i < len)
+	{
+		substr[i] = s[start + i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (cont);
+	return (substr);
 }

@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 13:36:42 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/24 17:44:25 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/26 15:30:23 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/26 16:38:17 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	s;
-	int	res;
-	int	i;
+	char	*str;
+	size_t	i;
+	size_t	j;
+	size_t	len;
 
-	s = 1;
-	res = 0;
+	len = ft_strlen (s1) + ft_strlen (s2);
+	str = ft_calloc (sizeof(char), len + 1);
+	if (!str)
+		return (0);
 	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	j = 0;
+	while (s1[i])
 	{
-		if (str[i] == '-')
-			s = s * (-1);
+		str[i] = s1[i];
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
+	while (s2[j])
 	{
-		res = res * 10 + str[i] - '0';
-		i++;
+		str[i + j] = s2[j];
+		j++;
 	}
-	res = res * s;
-	return (res);
+	return (str);
 }

@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 13:36:42 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/24 17:44:25 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/28 14:53:05 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/28 15:30:11 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	s;
-	int	res;
-	int	i;
+	unsigned int	i;
 
-	s = 1;
-	res = 0;
 	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	while (s[i])
 	{
-		if (str[i] == '-')
-			s = s * (-1);
+		f(i, &s[i]);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
-	{
-		res = res * 10 + str[i] - '0';
-		i++;
-	}
-	res = res * s;
-	return (res);
+	return ;
 }

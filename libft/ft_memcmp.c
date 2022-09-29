@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 13:36:42 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/24 17:44:25 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/24 18:04:48 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/24 19:48:54 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int	s;
-	int	res;
-	int	i;
+#include<stdio.h>
 
-	s = 1;
-	res = 0;
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
 	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (i < n)
 	{
-		if (str[i] == '-')
-			s = s * (-1);
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
-	{
-		res = res * 10 + str[i] - '0';
-		i++;
-	}
-	res = res * s;
-	return (res);
+	return (0);
 }

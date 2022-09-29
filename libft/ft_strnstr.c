@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 13:36:42 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/24 17:44:25 by abarriga         ###   ########.fr       */
+/*   Created: 2022/08/24 11:41:16 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/24 17:32:43 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
-int	ft_atoi(const char *str)
+char	*ft_strnstr(char	*haystack, char	*needle, size_t len)
 {
-	int	s;
-	int	res;
-	int	i;
+	size_t	i;
+	size_t	j;
 
-	s = 1;
-	res = 0;
 	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	if (needle[i] == '\0')
+		return (haystack);
+	while (haystack[i] != '\0')
 	{
-		if (str[i] == '-')
-			s = s * (-1);
+		j = 0;
+		while (haystack[i + j] && haystack[i + j] == needle[j] && len > i + j)
+		{
+			if (needle[j + 1] == '\0')
+				return (&haystack[i]);
+			j++;
+		}
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
-	{
-		res = res * 10 + str[i] - '0';
-		i++;
-	}
-	res = res * s;
-	return (res);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:26:10 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/20 17:56:03 by abarriga         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:08:38 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdio.h>
@@ -19,13 +19,4 @@ int	ft_isalnum(int c)
 		return (1);
 	else
 		return (0);
-}
-
-int	main(void)
-{
-	int	c;
-
-	c = ' ';
-	printf("%d\n", isalnum(c));
-	printf("%d\n", ft_isalnum(c));
 }

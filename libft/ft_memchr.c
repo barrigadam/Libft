@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 13:36:42 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/24 17:44:25 by abarriga         ###   ########.fr       */
+/*   Created: 2022/09/23 12:58:40 by abarriga          #+#    #+#             */
+/*   Updated: 2022/09/24 18:01:17 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
-int	ft_atoi(const char *str)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	s;
-	int	res;
-	int	i;
+	size_t	i;
+	char	*ptr;
 
-	s = 1;
-	res = 0;
 	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	ptr = (char *)s;
+	while (i < n)
 	{
-		if (str[i] == '-')
-			s = s * (-1);
+		if (ptr[i] == (char) c)
+			return (ptr + i);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
-	{
-		res = res * 10 + str[i] - '0';
-		i++;
-	}
-	res = res * s;
-	return (res);
+	return (0);
 }
