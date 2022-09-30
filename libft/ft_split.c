@@ -6,7 +6,7 @@
 /*   By: abarriga <abarriga@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:33:56 by abarriga          #+#    #+#             */
-/*   Updated: 2022/09/27 18:57:06 by abarriga         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:40:30 by abarriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"libft.h"
@@ -31,7 +31,7 @@ int	ft_count_words(char const *s, char c)
 	return (c_words);
 }
 
-char	*ft_calloc_str(const char *s, char c)
+static char	*ft_calloc_str(const char *s, char c)
 {
 	char	*word;
 	int		i;
@@ -41,7 +41,10 @@ char	*ft_calloc_str(const char *s, char c)
 		i++;
 	word = ((char *)ft_calloc(sizeof(char), i + 1));
 	if (!word)
+	{
+		free(word);
 		return (0);
+	}
 	i = 0;
 	while (s[i] && s[i] != c)
 	{
@@ -51,14 +54,23 @@ char	*ft_calloc_str(const char *s, char c)
 	return (word);
 }
 
+static char	**ft_free_mem(char **strs, int i)
+{
+	while (i >= 0)
+	{
+		free(strs[i]);
+		i--;
+	}
+	free(strs);
+	return (0);
+}
+
 char	**ft_split(char const	*s, char c)
 {
 	int		num_words;
 	char	**strs;
 	int		i;
 
-	if (!s)
-		return (0);
 	num_words = ft_count_words(s, c);
 	strs = (char **)ft_calloc(sizeof(char *), (num_words + 1));
 	if (!strs)
@@ -71,6 +83,8 @@ char	**ft_split(char const	*s, char c)
 		if (*s && *s != c)
 		{
 			strs[i] = ft_calloc_str(s, c);
+			if (strs[i] == NULL)
+				return (ft_free_mem(strs, i));
 			i++;
 			while (*s && *s != c)
 				s++;
